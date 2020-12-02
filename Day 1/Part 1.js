@@ -1,6 +1,7 @@
 const { productOfArray } = require('../utils/functions');
 
 function solve(input) {
+  input = input.map(num => +num);
   const target = 2020;
   const nums = twoSum(input, target);
   return productOfArray(nums);
