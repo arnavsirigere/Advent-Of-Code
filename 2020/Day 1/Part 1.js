@@ -1,4 +1,4 @@
-const { productOfArray } = require('../utils/functions');
+const { productOfArray } = require('../../utils/functions');
 
 function solve(input) {
   input = input.map(num => +num);

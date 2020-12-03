@@ -1,23 +1,24 @@
 const chalk = require('chalk');
 const fs = require('fs');
 
-const totalPuzzles = getTotalPuzzles();
+const years = getDirectories('./').filter(dir => /\d+/.test(dir));
 
-for (let i = 1; i <= totalPuzzles; i++) {
-  const path = `./Day ${i}`;
-  const input = fs.readFileSync(`${path}/input.txt`).toString().split('\n');
-  console.log('  Answer to Puzzles of ' + chalk.magenta(`Day ${i} `) + ':');
-  for (let part of [1, 2]) {
-    const solver = require(`${path}/Part ${part}`);
-    const answer = solver.solve(input);
-    console.log(chalk.blue(`    Part ${part}`) + ' : ' + chalk.green(answer));
+for (const year of years) {
+  console.log(chalk.magenta.underline.bold(`Advent of Code ${year}`));
+  const path = `./${year}/`;
+  const days = getDirectories(path);
+  for (const day of days) {
+    console.log('  ' + chalk.blue.underline(day));
+    const puzzlePath = path + day;
+    const input = fs.readFileSync(`${puzzlePath}/input.txt`).toString().split('\n');
+    for (let part of [1, 2]) {
+      const solver = require(`${puzzlePath}/Part ${part}`);
+      const answer = solver.solve(input);
+      console.log(chalk.yellow(`    Part ${part}`) + ' : ' + chalk.green(answer));
+    }
+    console.log('');
   }
   console.log('');
-}
-
-function getTotalPuzzles() {
-  const directories = getDirectories('./');
-  return directories.filter(dir => /Day \d+/.test(dir)).length;
 }
 
 function getDirectories(path) {
