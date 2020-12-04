@@ -10,7 +10,11 @@ for (const year of years) {
   for (const day of days) {
     console.log('  ' + chalk.blue.underline(day));
     const puzzlePath = path + day;
-    const input = fs.readFileSync(`${puzzlePath}/input.txt`).toString().split('\n');
+    const { delimiter } = require(`${puzzlePath}/Part 1`);
+    const input = fs
+      .readFileSync(`${puzzlePath}/input.txt`)
+      .toString()
+      .split(delimiter || '\n');
     for (let part of [1, 2]) {
       const solver = require(`${puzzlePath}/Part ${part}`);
       const answer = solver.solve(input);
