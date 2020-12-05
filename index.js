@@ -3,7 +3,7 @@ const fs = require('fs');
 
 const years = getDirectories('./').filter(dir => /\d+/.test(dir));
 
-for (const year of years) {
+for (let year of years) {
   console.log(chalk.magenta.underline.bold(`Advent of Code ${year}`));
   const path = `./${year}/`;
   const days = getDirectories(path);
@@ -17,12 +17,11 @@ for (const year of years) {
       .split(delimiter || '\n');
     for (let part of [1, 2]) {
       const solver = require(`${puzzlePath}/Part ${part}`);
-      const answer = solver.solve(input);
+      const answer = solver.solve(input.length == 1 ? input[0] : input);
       console.log(chalk.yellow(`    Part ${part}`) + ' : ' + chalk.green(answer));
     }
     console.log('');
   }
-  console.log('');
 }
 
 function getDirectories(path) {
