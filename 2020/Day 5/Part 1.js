@@ -30,6 +30,6 @@ function newRange(range, char, seatPos) {
   return lookup[seatPos].indexOf(char) == 0 ? lowerHalf : upperHalf;
 }
 
-const calcSeatId = (row, col) => row * 8 + col;
+const calcSeatId = (row, col) => row * totalCols + col;
 
 module.exports = { solve, seatIds };
