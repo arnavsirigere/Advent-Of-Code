@@ -9,6 +9,7 @@
   "author": "Arnav Sirigere",
   "license": "MIT",
   "dependencies": {
-    "chalk": "^4.1.0"
+    "chalk": "^4.1.0",
+    "crypto": "^1.0.1"
   }
 }
