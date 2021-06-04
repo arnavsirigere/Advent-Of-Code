@@ -1,7 +1,7 @@
 const chalk = require('chalk');
 const fs = require('fs');
 
-const years = getDirectories('./').filter(dir => /\d+/.test(dir));
+const years = getDirectories('./').filter((dir) => /\d+/.test(dir));
 
 for (let year of years) {
   console.log(chalk.magenta.underline.bold(`Advent of Code ${year}`));
@@ -25,5 +25,5 @@ for (let year of years) {
 }
 
 function getDirectories(path) {
-  return fs.readdirSync(path).filter(file => fs.statSync(path + '/' + file).isDirectory());
+  return fs.readdirSync(path).filter((file) => fs.statSync(path + '/' + file).isDirectory());
 }
