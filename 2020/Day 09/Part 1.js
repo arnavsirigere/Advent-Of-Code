@@ -1,4 +1,4 @@
-const { twoSum } = require('../Day 1/Part 1');
+const { twoSum } = require('../Day 01/Part 1');
 
 function solve(input) {
   input = input.map(Number);
