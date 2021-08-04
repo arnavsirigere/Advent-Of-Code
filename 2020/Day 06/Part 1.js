@@ -6,4 +6,4 @@ function solve(input) {
   return sumOfArray(questions);
 }
 
-module.exports = { solve, delimiter: '\n\n' };
+module.exports = { solve, delimiter: '\r\n\r\n' };

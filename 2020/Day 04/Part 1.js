@@ -14,4 +14,4 @@ function solve(input) {
   return validPassports;
 }
 
-module.exports = { solve, requiredFields, delimiter: '\n\n' };
+module.exports = { solve, requiredFields, delimiter: '\r\n\r\n' };

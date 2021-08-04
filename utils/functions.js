@@ -7,7 +7,7 @@ function sumOfArray(nums) {
 }
 
 function parseInput(input, str) {
-  return input.map((x) => x.replace(new RegExp('\n', 'g'), str));
+  return input.map((x) => x.replace(new RegExp('\r\n', 'g'), str));
 }
 
 module.exports = { productOfArray, sumOfArray, parseInput };
