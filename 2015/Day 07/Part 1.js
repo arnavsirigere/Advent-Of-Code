@@ -19,9 +19,13 @@ function findSignal(targetWire, c) {
     circuits = c;
     signals = {};
   }
-  if (signals[targetWire]) return signals[targetWire];
-  if (!isNaN(targetWire)) return +targetWire;
-  const circuit = circuits.find(circuit => circuit.endsWith(`-> ${targetWire}`));
+  if (signals[targetWire]) {
+    return signals[targetWire];
+  }
+  if (!isNaN(+targetWire)) {
+    return +targetWire;
+  }
+  const circuit = circuits.find((circuit) => circuit.endsWith(`-> ${targetWire}`));
   const signal = circuit.split(' -> ')[0];
   if (!isNaN(signal)) {
     signals[targetWire] = +signal;
@@ -57,4 +61,4 @@ function findSignal(targetWire, c) {
   }
 }
 
-module.exports = { solve, findSignal };
+module.exports = { solve, findSignal, delimiter: '\r\n' };
