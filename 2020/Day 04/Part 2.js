@@ -1,8 +1,6 @@
 const { requiredFields } = require('./Part 1');
-const { parseInput } = require('../../utils/functions');
 
 function solve(input) {
-  input = parseInput(input, ' ');
   let validPassports = 0;
   for (let passport of input) {
     if (validatePassport(passport)) {

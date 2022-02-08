@@ -6,8 +6,4 @@ function sumOfArray(nums) {
   return nums.reduce((acc, val) => acc + val, 0);
 }
 
-function parseInput(input, str) {
-  return input.map((x) => x.replace(new RegExp('\r\n', 'g'), str));
-}
-
-module.exports = { productOfArray, sumOfArray, parseInput };
+module.exports = { productOfArray, sumOfArray };

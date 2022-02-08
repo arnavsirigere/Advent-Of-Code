@@ -25,7 +25,7 @@ function printPuzzle(day, year) {
   const input = fs
     .readFileSync(`${puzzlePath}/input.txt`)
     .toString()
-    .split(delimiter || '\n');
+    .split(delimiter || '\r\n');
   for (let part of [1, 2]) {
     const solver = require(`${puzzlePath}/Part ${part}`);
     const answer = solver.solve(input.length == 1 ? input[0] : input);
