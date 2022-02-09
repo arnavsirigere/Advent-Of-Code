@@ -1,20 +1,19 @@
 const chalk = require('chalk');
 const fs = require('fs');
 
-let [day, year] = process.argv.slice(2, 4);
-if (day && year) {
-  // Specific Puzzle
+let [year, day] = process.argv.slice(2, 4);
+if (year && day) {
+  // Specified puzzle
   console.log(chalk.magenta.underline.bold(`Advent of Code ${year}`));
   printPuzzle(`Day ${day}`, year);
+} else if (year) {
+  // All puzzles from a specified year
+  printYear(year);
 } else {
-  // All solved puzzles
+  // All puzzles
   const years = getDirectories('./').filter((dir) => /\d+/.test(dir));
   for (let year of years) {
-    const days = getDirectories(`./${year}/`);
-    console.log(chalk.magenta.underline.bold(`Advent of Code ${year}`));
-    for (let day of days) {
-      printPuzzle(day, year);
-    }
+    printYear(year);
   }
 }
 
@@ -30,6 +29,15 @@ function printPuzzle(day, year) {
     const solver = require(`${puzzlePath}/Part ${part}`);
     const answer = solver.solve(input.length == 1 ? input[0] : input);
     console.log(chalk.yellow(`    Part ${part}`) + ' : ' + chalk.green(answer));
+  }
+  console.log('');
+}
+
+function printYear(year) {
+  const days = getDirectories(`./${year}/`);
+  console.log(chalk.magenta.underline.bold(`Advent of Code ${year}`));
+  for (let day of days) {
+    printPuzzle(day, year);
   }
   console.log('');
 }
