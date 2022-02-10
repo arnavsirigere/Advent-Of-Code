@@ -1,8 +1,5 @@
 const { sumOfArray } = require('../../utils/functions');
 
-function solve(input) {
-  const questions = input.map((group) => new Set(group.split('')).size);
-  return sumOfArray(questions);
-}
+const solve = (input) => sumOfArray(input.map((group) => new Set(group.replace(/\r\n/g, '').split('')).size));
 
 module.exports = { solve, delimiter: '\r\n\r\n' };

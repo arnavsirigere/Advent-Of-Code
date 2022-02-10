@@ -17,4 +17,4 @@ function solve(input) {
   return answeredYesCount;
 }
 
-module.exports = { solve, delimiter: '\r\n' };
+module.exports = { solve };
