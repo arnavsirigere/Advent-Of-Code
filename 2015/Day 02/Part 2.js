@@ -1,11 +1,18 @@
+const { productOfArray } = require('../../utils/functions');
+
 function solve(input) {
-  let floor = 0;
-  for (let i = 0; i < input.length; i++) {
-    floor += input.charAt(i) == '(' ? 1 : -1;
-    if (floor == -1) {
-      return i + 1;
-    }
+  let totalFeet = 0;
+  for (let dimensions of input) {
+    dimensions = dimensions.split('x').map(dim => +dim);
+    const volume = productOfArray(dimensions);
+    dimensions.splice(dimensions.indexOf(Math.max(...dimensions)), 1);
+    const [l, b] = dimensions;
+    const perimeter = calcPerimeter(l, b);
+    totalFeet += volume + perimeter;
   }
+  return totalFeet;
 }
+
+const calcPerimeter = (l, b) => 2 * (l + b);
 
 module.exports = { solve };

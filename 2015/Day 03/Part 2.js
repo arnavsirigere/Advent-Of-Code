@@ -1,18 +1,16 @@
-const { productOfArray } = require('../../utils/functions');
+const { updateSanta } = require('./Part 1');
 
 function solve(input) {
-  let totalFeet = 0;
-  for (let dimensions of input) {
-    dimensions = dimensions.split('x').map(dim => +dim);
-    const volume = productOfArray(dimensions);
-    dimensions.splice(dimensions.indexOf(Math.max(...dimensions)), 1);
-    const [l, b] = dimensions;
-    const perimeter = calcPerimeter(l, b);
-    totalFeet += volume + perimeter;
+  const santa = { x: 0, y: 0 };
+  const robotSanta = { x: 0, y: 0 };
+  const visitedHouses = ['0,0'];
+  for (let i = 0; i < input.length; i += 2) {
+    updateSanta(santa, input.charAt(i));
+    updateSanta(robotSanta, input.charAt(i + 1));
+    visitedHouses.push(`${santa.x},${santa.y}`);
+    visitedHouses.push(`${robotSanta.x},${robotSanta.y}`);
   }
-  return totalFeet;
+  return new Set(visitedHouses).size;
 }
-
-const calcPerimeter = (l, b) => 2 * (l + b);
 
 module.exports = { solve };

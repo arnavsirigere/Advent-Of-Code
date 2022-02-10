@@ -1,18 +1,19 @@
-const { productOfArray } = require('../../utils/functions');
-
 function solve(input) {
-  let totalSqFeet = 0;
-  for (let dimensions of input) {
-    dimensions = dimensions.split('x').map(dim => +dim);
-    const [l, b, h] = dimensions;
-    const surfaceArea = calcSurfaceArea(l, b, h);
-    dimensions.splice(dimensions.indexOf(Math.max(...dimensions)), 1);
-    const extra = productOfArray(dimensions);
-    totalSqFeet += surfaceArea + extra;
+  const santa = { x: 0, y: 0 };
+  const visitedHouses = ['0,0'];
+  for (const dir of input) {
+    updateSanta(santa, dir);
+    visitedHouses.push(`${santa.x},${santa.y}`);
   }
-  return totalSqFeet;
+  return new Set(visitedHouses).size;
 }
 
-const calcSurfaceArea = (l, b, h) => 2 * l * b + 2 * b * h + 2 * l * h;
+function updateSanta(santa, dir) {
+  //prettier-ignore
+  const lookup = { '^': [0, 1], 'v': [0, -1], '>': [1, 0], '<': [-1, 0] };
+  const [x, y] = lookup[dir];
+  santa.x += x;
+  santa.y += y;
+}
 
-module.exports = { solve };
+module.exports = { solve, updateSanta };
