@@ -1,7 +1,6 @@
 const { sumOfArray } = require('../../utils/functions');
 
-function solve(input) {
-  return sumOfArray(input.map(code => 2 + code.replace(/"/g, '\\"').replace(/\\/g, '\\\\').length - code.length));
-}
+const encode = (code) => '"' + code.replace(/\\/g, '\\\\').replace(/"/g, '\\"') + '"';
+const solve = (input) => sumOfArray(input.map((code) => encode(code).length - code.length));
 
 module.exports = { solve };
