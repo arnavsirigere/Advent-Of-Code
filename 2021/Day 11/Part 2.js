@@ -41,5 +41,3 @@ function solve(input) {
 }
 
 module.exports = { solve };
-
-module.exports = { solve };
