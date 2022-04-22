@@ -47,9 +47,7 @@ const dijkstra = (riskGraph, startI, startJ, endI, endJ) => {
         }
 
         // Add the neighbor node to our priority queue
-        const neighbor = { index: neighborIndex };
-        neighbor.distance = newDistance;
-        priorityQueue.push(neighbor);
+        priorityQueue.push({ index: neighborIndex, distance: newDistance });
       }
     }
     // Update the priority queue and visit the next closest node, which will be the first node in the priority queue after we sort it
