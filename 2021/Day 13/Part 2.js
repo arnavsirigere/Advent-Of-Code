@@ -1,3 +1,5 @@
+// FIXME This needs to be revisited
+
 function solve(input) {
   const emptyLine = input.indexOf(''); // Empty line between the points and instructions in input
   const points = input.slice(0, emptyLine).map((point) => point.split(',').map(Number));
